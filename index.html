@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>AMD</title>
+         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+         <link rel="stylesheet" type="text/css" href="css/estilos.css">
+    </head>
+    <body>
+    	<section class="container-fluid">		
+    		<header class="page-header">
+        		<h1 class="header">Notificaciones<small>Backbone Tutoriales</small></h1>
+    		</header>
+    		<section class="row">
+            
+
+    		</section>
+    		<footer class="pie">
+    			<a href="#">	
+    				<h4>@churo67956<h4>
+      			</a>
+    		</footer>
+    	</section>
+    	<script  src="js/librerias3eros/jquery.js"></script>
+        <script>
+
+ // Create the XHR object.
+function createCORSRequest(method, url) {
+  var xhr = new XMLHttpRequest();
+  if ("withCredentials" in xhr) {
+    // XHR for Chrome/Firefox/Opera/Safari.
+    xhr.open(method, url, true);
+  } else if (typeof XDomainRequest != "undefined") {
+    // XDomainRequest for IE.
+    xhr = new XDomainRequest();
+    xhr.open(method, url);
+  } else {
+    // CORS not supported.
+    xhr = null;
+  }
+  return xhr;
+}
+
+// Helper method to parse the title tag from the response.
+function getTitle(text) {
+  return text.match('<title>(.*)?</title>')[1];
+}
+
+// Make the actual CORS request.
+function makeCorsRequest() {
+  // All HTML5 Rocks properties support CORS.
+  url = 'http://www.google.com';
+  //var url = 'http://www.navarra.es/appsext/DescargarFichero/default.aspx?codigoAcceso=OpenData&fichero=IncCarreteras/IncidenciasdeCarreteras.json';
+
+  var xhr = createCORSRequest('GET', url);
+  if (!xhr) {
+    alert('CORS not supported');
+    return;
+  }
+
+  // Response handlers.
+  xhr.onload = function() {
+    var text = xhr.responseText;
+    alert(text);
+    alert('Response from CORS request to ' + url + ': ' + title);
+  };
+
+  xhr.onerror = function() {
+    alert('Woops, there was an error making the request.');
+  };
+
+  xhr.send();
+}
+
+makeCorsRequest();
+
+ /*var url = 'http://www.navarra.es/appsext/DescargarFichero/default.aspx?codigoAcceso=OpenData&fichero=IncCarreteras/IncidenciasdeCarreteras.json';
+
+    
+    // The web services request minus the domain name
+var path = 'codigoAcceso=OpenData&fichero=IncCarreteras/IncidenciasdeCarreteras.json';
+
+// The full path to the PHP proxy
+var url = 'http://localhost/Tutoriales/Backbone/proxy.php?yws_path=' + encodeURIComponent(path);
+// core xmlhttp code
+xmlhttp = new  XMLHttpRequest();
+
+xmlhttp.open('GET', url, true);
+
+xmlhttp.send();
+*/
+
+        </script>
+    </body>
+</html>
